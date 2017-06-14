@@ -11,22 +11,21 @@ public class StringSortLSD_main {
 
 	private static void sort(String[] a, int W) {
 		int R = 256; // Character of ASCII
-		// For each of the character from right to left
 		int N = a.length;
 		for (int d = W - 1; d >= 0; d--) {
-			int[] count = new int[R + 1];// 1.count the frequencies
+			int[] count = new int[R + 1];
 			for (int i = 0; i < N; i++) {
 				count[a[i].charAt(d) + 1]++;
 			}
-			for (int r = 0; r < R; r++) {// Transform counts to indices
+			for (int r = 0; r < R; r++) {
 				count[r + 1] += count[r];
 			}
-			String aux[] = new String[N];// 3.Distribute
+			String aux[] = new String[N];
 			for (int i = 0; i < N; i++) {
 				aux[count[a[i].charAt(d)]] = a[i];
 				count[a[i].charAt(d)]++;
 			}
-			System.arraycopy(aux, 0, a, 0, N);// 4.copyback
+			System.arraycopy(aux, 0, a, 0, N);
 		}
 	}
 }
